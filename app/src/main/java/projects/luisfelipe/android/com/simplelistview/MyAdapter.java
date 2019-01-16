@@ -44,25 +44,32 @@ public class MyAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup viewGroup) {
 
-        View v = convertView;
 
+        //view holder pattern
+        ViewHolder holder;
+        if(convertView == null){
+            //Se toma del contexto un objeto de tipo LayoutInflater para volcar la vista inflada hacia un view
+            LayoutInflater layoutInflater = LayoutInflater.from(this.context);
+            convertView = layoutInflater.inflate(R.layout.list_item, null);
 
-        //Se toma del contexto un objeto de tipo LayoutInflater para volcar la vista inflada hacia un view
-        LayoutInflater layoutInflater = LayoutInflater.from(this.context);
-        v = layoutInflater.inflate(R.layout.list_item, null);
+            holder = new ViewHolder();
+
+            //Referencia hacia el elemento a modificar (se obtiene una vez el view este inflado)
+            holder.nameTextView =(TextView) convertView.findViewById(R.id.textView);
+            convertView.setTag(holder);
+
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
 
         String currentName = names.get(position);
-        //currentName = (String)getItem(position);
-
-        //Referencia hacia el elemento a modificar (se obtiene una vez el view este inflado)
-        TextView textView = v.findViewById(R.id.textView);
-        textView.setText(currentName);
-//        ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
-//        String imageUri = "https://thumbs.dreamstime.com/t/%C3%ADcone-do-sinal-do-usu%C3%A1rio-s%C3%ADmbolo-da-pessoa-avatar-humano-84519083.jpg";
-//        Picasso.with(context).load(imageUri).into(imageView);
-
-
+        holder.nameTextView.setText(currentName);
         //retorna el view modificado
-        return v;
+        return convertView;
+    }
+
+    static class ViewHolder{
+        private TextView nameTextView;
+
     }
 }
