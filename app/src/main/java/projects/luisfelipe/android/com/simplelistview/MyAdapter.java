@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class MyAdapter extends BaseAdapter {
@@ -55,6 +57,9 @@ public class MyAdapter extends BaseAdapter {
         //Referencia hacia el elemento a modificar (se obtiene una vez el view este inflado)
         TextView textView = v.findViewById(R.id.textView);
         textView.setText(currentName);
+//        ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
+//        String imageUri = "https://thumbs.dreamstime.com/t/%C3%ADcone-do-sinal-do-usu%C3%A1rio-s%C3%ADmbolo-da-pessoa-avatar-humano-84519083.jpg";
+//        Picasso.with(context).load(imageUri).into(imageView);
 
 
         //retorna el view modificado
